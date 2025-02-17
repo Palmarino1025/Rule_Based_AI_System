@@ -1,4 +1,4 @@
-# Sample submission for the Building a Rule-Based AI System in Python project.
+# Submission for the Building a Rule-Based AI System in Python project.
 
 ---
 
