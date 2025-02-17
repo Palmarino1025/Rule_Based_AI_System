@@ -4,49 +4,47 @@
 
 ## Part 1: Initial Project Ideas
 
-### 1. Project Idea 1: Recipe Recommender
-- **Description:** A system that recommends recipes based on ingredients the user has on hand. The user enters ingredients, and the system matches them to recipes using predefined rules.  
+### 1. Project Idea 1: Movie Recommendation System
+- **Description:**  Build a basic recommendation system using predefined rules.
 - **Rule-Based Approach:**  
-  - The system checks for exact matches and partial matches with the ingredients required for recipes in a dataset.  
-  - Missing ingredients are suggested for partial matches.
+  - Pre-Defined movies suggestions based on mood or genre 
+  - Example: A movie recommendation system that suggests films based on user input like genre preference or mood (e.g., “If the user likes Sci-Fi, recommend Interstellar or Blade Runner”).
 
 ### 2. Project Idea 2: Simple Chatbot
-- **Description:** A chatbot that responds to user inputs with predefined answers. The chatbot simulates a conversation by identifying keywords and phrases in user inputs.  
+- **Description:** Create a simple chatbot using if-elif-else conditions or pattern matching with regular expressions. It could respond to basic user inputs like greetings, FAQs, or simple customer support queries.  
 - **Rule-Based Approach:**  
   - Responses are based on keywords such as "hello," "help," or "bye."  
-  - For example, if the user says "hello," the system responds with "Hi there! How can I assist you?"
+  - Example: A rule-based chatbot for a library that provides information about book availability, opening hours, and borrowing rules.
 
-### 3. Project Idea 3: Travel Packing List Generator
-- **Description:** A system that generates a packing list based on the user’s destination, climate, and trip duration.  
+### 3. Project Idea 3: Financial Advice Assistant
+- **Description:** A basic system that provides investment or saving advice based on user inputs.  
 - **Rule-Based Approach:**  
-  - The system uses rules to recommend items.  
-  - For example, if the destination is "beach" and the climate is "hot," the system suggests sunscreen, swimsuits, and sunglasses.
+  - The system uses rules to recommend certain paths finacially you should take.  
+  - Example: If a user says they want low risk, recommend bonds or savings accounts; if they want high returns, suggest stocks or crypto.
 
-### **Chosen Idea:** Recipe Recommender  
-**Justification:** I chose this project because it is practical and applicable to real-life scenarios. It allows me to work with datasets, apply conditional logic, and create a system that provides meaningful recommendations based on user input.
+### **Chosen Idea:** Movie Recommendation System  
+**Justification:** I feel that this would give me a good idea into how the brains behind the computer parse through written sentences to make choices based on input
 
 ---
 
 ## Part 2: Rules/Logic for the Chosen System
 
-The **Recipe Recommender** system will follow these rules:
+The **Movie Recommendation System** system will follow these rules:
 
 1. **Exact Match Rule:**  
-   - **IF** all ingredients in a recipe are found in the user’s ingredient list → **Recommend the recipe.**
+   - **IF** specific words are used for genre and mood → **Recommend the Movies**
 
 2. **Partial Match Rule:**  
-   - **IF** 75% or more of the ingredients in a recipe match the user’s ingredient list →  
-     - **Recommend the recipe.**  
-     - **Suggest the missing ingredients.**
+   - **IF** If they only give one of the two requested prompts then their will be a seperate sets for the singular choices as well   
+     - **Recommend the Movies.**  
 
-3. **Common Ingredients Rule:**  
-   - Ingredients like salt, pepper, and water are considered optional and will not be counted as missing.
+3. **No Match Rule:**  
+   - **IF** if none of the options are in my sets then a default suggestion of known classics will be displayed
 
-4. **No Match Rule:**  
-   - **IF** no recipes match → **Suggest adding more ingredients** for better recommendations.
+4. **Multiple Inputs**
+  - **IF** if the user puts in multiple moods or genre's we will merge the movie selections and strip away duplication
+    - **Recommend from multiple sets**
 
-5. **Low Ingredient Rule:**  
-   - **IF** fewer than three ingredients are provided → **Notify the user** and suggest adding more ingredients.
 
 ---
 
@@ -54,34 +52,33 @@ The **Recipe Recommender** system will follow these rules:
 
 Sample input and output: 
 
-Enter your ingredients (comma-separated): chicken, rice, soy sauce
-You are close to making Chicken Fried Rice! Missing: garlic.
+Enter preferred genres (e.g., Action, Comedy, Horror, Sci-Fi, Drama or press Enter to skip): action
+Enter preferred moods (e.g., Exciting, Funny, Thought-provoking, Dark, Scary, Relaxing, Thrilling or press Enter to skip): funny
 
-Enter your ingredients (comma-separated): garlic, soy sauce
-No recipes match. Try adding more ingredients.
+We recommend these movies for you: ['The Shawshank Redemption', 'The Dark Knight', 'Inception']
 
-Enter your ingredients (comma-separated): pasta, tomatoes, garlic, olive oil
-You can make Spaghetti Pomodoro!
+Enter preferred genres (Please use commas for multiple choices)(e.g., Action, Comedy, Horror, Sci-Fi, Drama or press Enter to skip): Drama
+Enter preferred moods (Please use commas for multiple choices)(e.g., Exciting, Funny, Thought-provoking, Dark, Scary, Relaxing, Thrilling or press Enter to skip): funny, weird, dark
+
+We recommend these movies for you: ['Se7en', 'Ghostbusters', 'Nightcrawler', 'Forrest Gump', 'The Green Mile', 'Joker', 'The Hangover', 'Dumb and Dumber', 'The Shawshank Redemption']
+
+Enter preferred genres (Please use commas for multiple choices)(e.g., Action, Comedy, Horror, Sci-Fi, Drama or press Enter to skip): 
+Enter preferred moods (Please use commas for multiple choices)(e.g., Exciting, Funny, Thought-provoking, Dark, Scary, Relaxing, Thrilling or press Enter to skip): scary, thrilling
+
+We recommend these movies for you: ['Sinister', "Don't Breathe", 'A Quiet Place', 'Alien', 'It', 'The Babadook']
 
 ---
 
 ## Part 4: Reflection
 
 ### Project Overview:
-This project involved designing a practical, rule-based system to recommend recipes based on user inputs. The system uses logical conditions (e.g., exact and partial matches) to evaluate user-provided ingredients against recipes in the dataset.
+The rule-based movie recommendation system works by categorizing movies based on genres and moods, allowing users to input either or both preferences. The system processes user input in a case-insensitive manner, ensuring flexibility regardless of capitalization. It checks for multiple genres or moods and matches them to predefined lists. If both are provided, it cross-references them for more specific recommendations. If no valid input is given, the system defaults to a general set of popular movies. The final recommendations are compiled into a set to prevent duplicates, ensuring variety in the suggestions.
 
-### Challenges:
-- **Handling Partial Matches:**  
-  Deciding on a threshold (75%) that balances flexibility with accuracy was challenging.
-- **Common Ingredients:**  
-  Ensuring common ingredients like salt and water don’t skew the results. I resolved this by excluding them from the missing ingredient list.
+One of the biggest challenges in designing this system was considering edge cases. Initially, I focused on handling straightforward inputs, but I quickly realized that users might only provide one category (genre or mood) or even multiple options. Ensuring the system didn’t break in these scenarios required carefully structuring the rules. Another challenge was balancing complexity and usability. At times, I considered adding more conditions to make recommendations highly specific, but I had to step back and avoid making the system too complex or restrictive.
 
-### Comparison to Machine Learning:
-- Unlike machine learning models, this system relies entirely on prewritten rules rather than learning from data.  
-- **Advantages:** Simplicity and transparency.  
-- **Limitations:**  
-  - Limited scalability.  
-  - Adding complex logic or handling ambiguous inputs (e.g., "bread" vs. "whole-grain bread") requires extensive manual rule updates, which machine learning could handle more flexibly.
+Working with AI to assist in the design and coding process was helpful, but also required clear prompting. I had to be specific about the requirements, especially regarding how inputs should be handled and the expected outputs. When the AI’s initial suggestions didn’t fully align with my needs, I refined my requests to focus on areas like case-insensitivity, handling multiple inputs, and default recommendations. This iterative process helped me develop a more effective system while also improving my ability to think critically about the problem.
+
+Overall, this project deepened my understanding of how rule-based AI systems work and the importance of anticipating user behavior when designing them.
 
 
 
